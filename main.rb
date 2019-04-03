@@ -138,8 +138,8 @@ class Main
       puts "Введите объем вагона" if wagon_type == 1
       puts "Введите общее количество мест" if wagon_type == 2
 
-      wagon_property = gets.to_i
-      wagon = wagon_type == 1 ? CargoWagon.new(wagon_property) : PassengerWagon.new(wagon_property)
+      wagon_size = gets.to_i
+      wagon = wagon_type == 1 ? CargoWagon.new(wagon_size) : PassengerWagon.new(wagon_size)
 
       puts "Создан вагон: \"#{wagon.description}\""
       @wagons << wagon
