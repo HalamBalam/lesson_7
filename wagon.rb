@@ -47,6 +47,7 @@ class Wagon
   end
 
   def reserve_space(delta)
-    @reserved_space += [delta, available_space].min
+    raise size_limit_error if delta > available_space
+    @reserved_space += delta
   end
 end
