@@ -204,14 +204,21 @@ class Main
     wagon = choose_element(@wagons)
     return unless wagon
 
-    if wagon.is_a?(CargoWagon)
-      puts "Введите занимаемый объем"
-      volume = gets.to_i
-      wagon.fill_space(volume)
-    else
-      puts "Введите занимаемое количество мест"
-      number_of_seats = gets.to_i
-      number_of_seats.times { wagon.take_a_seat }
+    loop do
+      begin
+      if wagon.is_a?(CargoWagon)
+        puts "Введите занимаемый объем"
+        volume = gets.to_i
+        wagon.fill_space(volume)
+      else
+        puts "Введите занимаемое количество мест"
+        number_of_seats = gets.to_i
+        number_of_seats.times { wagon.take_a_seat }
+      end
+      break
+      rescue RuntimeError => e
+        puts "ОШИБКА: \"#{e.message}\""
+      end  
     end
 
     puts wagon.description
